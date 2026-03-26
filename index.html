@@ -15,7 +15,6 @@ body {
     text-align: center;
 }
 
-/* TITLE */
 h1 {
     color: #ff4da6;
     font-size: 30px;
@@ -23,7 +22,6 @@ h1 {
     text-shadow: 0 0 10px #ff4da6;
 }
 
-/* SERVICES GRID */
 .services {
     display: grid;
     grid-template-columns: 1fr;
@@ -32,7 +30,6 @@ h1 {
     margin: auto;
 }
 
-/* BUTTON STYLE */
 button {
     padding: 16px;
     font-size: 18px;
@@ -51,7 +48,7 @@ button:hover {
     box-shadow: 0 0 18px rgba(255, 77, 166, 0.7);
 }
 
-/* INVOICE BOX */
+/* Invoice box */
 .box {
     margin-top: 20px;
     padding: 20px;
@@ -65,19 +62,36 @@ button:hover {
     text-align: left;
 }
 
-/* HEADERS */
 .box h3 {
     text-align: center;
     color: #ff4da6;
 }
 
-/* INVOICE LIST */
-#invoice div {
+/* Invoice rows */
+.invoice-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 6px 0;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* TOTAL */
+.remove-btn {
+    background: transparent;
+    color: #ff4da6;
+    font-size: 16px;
+    border: 1px solid #ff4da6;
+    padding: 4px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background: #ff4da6;
+    color: #fff;
+}
+
+/* Total */
 .total {
     font-size: 24px;
     font-weight: bold;
@@ -86,28 +100,11 @@ button:hover {
     color: #ff4da6;
 }
 
-/* INPUT */
-input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 12px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-    background: #111;
-    color: white;
-    outline: 1px solid rgba(255, 77, 166, 0.3);
-}
-
-/* ACTION BUTTONS */
+/* Reset button */
 .actions {
     margin-top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
-/* DESKTOP */
 @media (min-width: 600px) {
     .services {
         grid-template-columns: 1fr 1fr;
@@ -140,10 +137,7 @@ input {
 
     <div class="total">Total: $<span id="total">0</span></div>
 
-    <input type="text" id="customer" placeholder="Customer Name">
-
     <div class="actions">
-        <button onclick="copyToDiscord()">Copy for Discord</button>
         <button onclick="resetOrder()">Reset</button>
     </div>
 </div>
@@ -162,41 +156,41 @@ function addItem(name, price) {
     updateDisplay();
 }
 
+function removeItem(index) {
+    total -= items[index].price;
+    items.splice(index, 1);
+    updateDisplay();
+}
+
 function updateDisplay() {
     const invoiceDiv = document.getElementById("invoice");
     const totalSpan = document.getElementById("total");
 
     invoiceDiv.innerHTML = "";
 
-    items.forEach(item => {
-        const line = document.createElement("div");
-        line.textContent = `${item.name} - $${formatMoney(item.price)}`;
-        invoiceDiv.appendChild(line);
+    items.forEach((item, index) => {
+        const row = document.createElement("div");
+        row.className = "invoice-item";
+
+        const text = document.createElement("span");
+        text.textContent = `${item.name} - $${formatMoney(item.price)}`;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.className = "remove-btn";
+        removeBtn.onclick = () => removeItem(index);
+
+        row.appendChild(text);
+        row.appendChild(removeBtn);
+        invoiceDiv.appendChild(row);
     });
 
     totalSpan.textContent = formatMoney(total);
 }
 
-function copyToDiscord() {
-    const customer = document.getElementById("customer").value || "N/A";
-
-    let text = `**Baddies Mechanic Invoice**\n`;
-    text += `Customer: ${customer}\n\n`;
-
-    items.forEach(item => {
-        text += `• ${item.name} - $${formatMoney(item.price)}\n`;
-    });
-
-    text += `\nTotal: $${formatMoney(total)}`;
-
-    navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
-}
-
 function resetOrder() {
     total = 0;
     items = [];
-    document.getElementById("customer").value = "";
     updateDisplay();
 }
 </script>
