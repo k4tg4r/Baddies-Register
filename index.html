@@ -18,8 +18,16 @@ body {
 h1 {
     color: #ff4da6;
     font-size: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-shadow: 0 0 10px #ff4da6;
+}
+
+.section-title {
+    color: #ff4da6;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-shadow: 0 0 8px #ff4da6;
 }
 
 .services {
@@ -67,7 +75,6 @@ button:hover {
     color: #ff4da6;
 }
 
-/* Invoice rows */
 .invoice-item {
     display: flex;
     justify-content: space-between;
@@ -91,7 +98,6 @@ button:hover {
     color: #fff;
 }
 
-/* Total */
 .total {
     font-size: 24px;
     font-weight: bold;
@@ -100,7 +106,6 @@ button:hover {
     color: #ff4da6;
 }
 
-/* Reset button */
 .actions {
     margin-top: 15px;
 }
@@ -121,6 +126,7 @@ button:hover {
 
 <h1>Baddies Mechanic Register</h1>
 
+<!-- MAIN SERVICES -->
 <div class="services">
     <button onclick="addItem('Full Upgrade', 500000)">Full Upgrade ($500K)</button>
     <button onclick="addItem('Full Service', 350000)">Full Service ($350K)</button>
@@ -130,6 +136,28 @@ button:hover {
     <button onclick="addItem('Roadside Assistance', 150000)">Roadside Assistance ($150K)</button>
 </div>
 
+<!-- INDIVIDUAL SERVICES -->
+<div class="section-title">Individual Services</div>
+
+<div class="services">
+    <button onclick="addItem('Engine Upgrade (+)', 10000)">Engine Upgrade (+) ($10K)</button>
+    <button onclick="addItem('Brakes (+)', 10000)">Brakes (+) ($10K)</button>
+    <button onclick="addItem('Transmission (+)', 10000)">Transmission (+) ($10K)</button>
+    <button onclick="addItem('Suspension (+)', 10000)">Suspension (+) ($10K)</button>
+    <button onclick="addItem('Armor (+)', 10000)">Armor (+) ($10K)</button>
+    <button onclick="addItem('Turbo', 20000)">Turbo ($20K)</button>
+    <button onclick="addItem('Stance', 15000)">Stance ($15K)</button>
+    <button onclick="addItem('Wheels', 20000)">Wheels ($20K)</button>
+    <button onclick="addItem('Tire Smoke', 15000)">Tire Smoke ($15K)</button>
+    <button onclick="addItem('Bulletproof Tires', 50000)">Bulletproof Tires ($50K)</button>
+    <button onclick="addItem('Window Tint', 10000)">Window Tint ($10K)</button>
+    <button onclick="addItem('Respray', 20000)">Respray ($20K)</button>
+    <button onclick="addItem('Headlights', 15000)">Headlights ($15K)</button>
+    <button onclick="addItem('Nitro Tank (+)', 100000)">Nitro Tank (+) ($100K)</button>
+    <button onclick="addItem('Cosmetics', 20000)">Cosmetics ($20K)</button>
+</div>
+
+<!-- INVOICE -->
 <div class="box">
     <h3>Invoice</h3>
 
