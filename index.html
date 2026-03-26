@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baddies Mechanic Register</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #0a0a0a, #1a1a1a);
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+/* TITLE */
+h1 {
+    color: #ff4da6;
+    font-size: 30px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px #ff4da6;
+}
+
+/* SERVICES GRID */
+.services {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* BUTTON STYLE */
+button {
+    padding: 16px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff4da6, #ff1a8c);
+    color: white;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(255, 77, 166, 0.4);
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 18px rgba(255, 77, 166, 0.7);
+}
+
+/* INVOICE BOX */
+.box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 77, 166, 0.05);
+    border: 1px solid rgba(255, 77, 166, 0.3);
+    box-shadow: 0 0 20px rgba(255, 77, 166, 0.15);
+    text-align: left;
+}
+
+/* HEADERS */
+.box h3 {
+    text-align: center;
+    color: #ff4da6;
+}
+
+/* INVOICE LIST */
+#invoice div {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* TOTAL */
+.total {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    color: #ff4da6;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    background: #111;
+    color: white;
+    outline: 1px solid rgba(255, 77, 166, 0.3);
+}
+
+/* ACTION BUTTONS */
+.actions {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* DESKTOP */
+@media (min-width: 600px) {
+    .services {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Baddies Mechanic Register</h1>
+
+<div class="services">
+    <button onclick="addItem('Full Upgrade', 500000)">Full Upgrade ($500K)</button>
+    <button onclick="addItem('Full Service', 350000)">Full Service ($350K)</button>
+    <button onclick="addItem('Engine Swap', 100000)">Engine Swap ($100K)</button>
+    <button onclick="addItem('Repair', 50000)">Repair ($50K)</button>
+    <button onclick="addItem('Carplay Install', 350000)">Carplay Install ($350K)</button>
+    <button onclick="addItem('Roadside Assistance', 150000)">Roadside Assistance ($150K)</button>
+</div>
+
+<div class="box">
+    <h3>Invoice</h3>
+
+    <div id="invoice"></div>
+
+    <div class="total">Total: $<span id="total">0</span></div>
+
+    <input type="text" id="customer" placeholder="Customer Name">
+
+    <div class="actions">
+        <button onclick="copyToDiscord()">Copy for Discord</button>
+        <button onclick="resetOrder()">Reset</button>
+    </div>
+</div>
+
+<script>
+let total = 0;
+let items = [];
+
+function formatMoney(num) {
+    return num.toLocaleString();
+}
+
+function addItem(name, price) {
+    total += price;
+    items.push({ name, price });
+    updateDisplay();
+}
+
+function updateDisplay() {
+    const invoiceDiv = document.getElementById("invoice");
+    const totalSpan = document.getElementById("total");
+
+    invoiceDiv.innerHTML = "";
+
+    items.forEach(item => {
+        const line = document.createElement("div");
+        line.textContent = `${item.name} - $${formatMoney(item.price)}`;
+        invoiceDiv.appendChild(line);
+    });
+
+    totalSpan.textContent = formatMoney(total);
+}
+
+function copyToDiscord() {
+    const customer = document.getElementById("customer").value || "N/A";
+
+    let text = `**Baddies Mechanic Invoice**\n`;
+    text += `Customer: ${customer}\n\n`;
+
+    items.forEach(item => {
+        text += `• ${item.name} - $${formatMoney(item.price)}\n`;
+    });
+
+    text += `\nTotal: $${formatMoney(total)}`;
+
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard!");
+}
+
+function resetOrder() {
+    total = 0;
+    items = [];
+    document.getElementById("customer").value = "";
+    updateDisplay();
+}
+</script>
+
+</body>
+</html>
