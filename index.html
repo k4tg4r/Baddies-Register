@@ -3,120 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Baddies Mechanic Register</title>
+<title>Auto Exotics Register</title>
 
 <style>
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #0a0a0a, #1a1a1a);
+    background: linear-gradient(180deg, #0d0d0d, #1a1a1a);
     color: #fff;
     margin: 0;
     padding: 15px;
     text-align: center;
 }
 
+/* TITLE */
 h1 {
-    color: #ff4da6;
-    font-size: 30px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px #ff4da6;
+    color: #ff2b2b;
+    font-size: 34px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(255, 43, 43, 0.8);
 }
 
+/* SECTION TITLES */
 .section-title {
-    color: #ff4da6;
+    color: #ffffff;
     margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    text-shadow: 0 0 8px #ff4da6;
+    margin-bottom: 12px;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* BUTTON GRID */
 .services {
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
-    max-width: 500px;
+    max-width: 550px;
     margin: auto;
 }
 
+/* BUTTONS */
 button {
     padding: 16px;
     font-size: 18px;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    background: linear-gradient(135deg, #ff4da6, #ff1a8c);
+    background: linear-gradient(135deg, #cc0000, #ff2b2b);
     color: white;
     width: 100%;
-    box-shadow: 0 0 10px rgba(255, 77, 166, 0.4);
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(255, 43, 43, 0.35);
     transition: all 0.2s ease;
 }
 
 button:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 18px rgba(255, 77, 166, 0.7);
+    box-shadow: 0 0 18px rgba(255, 43, 43, 0.7);
 }
 
-/* Invoice box */
+/* INVOICE BOX */
 .box {
-    margin-top: 20px;
+    margin-top: 25px;
     padding: 20px;
-    border-radius: 15px;
-    max-width: 500px;
+    border-radius: 16px;
+    max-width: 550px;
     margin-left: auto;
     margin-right: auto;
-    background: rgba(255, 77, 166, 0.05);
-    border: 1px solid rgba(255, 77, 166, 0.3);
-    box-shadow: 0 0 20px rgba(255, 77, 166, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 43, 43, 0.4);
+    box-shadow: 0 0 20px rgba(255, 43, 43, 0.15);
     text-align: left;
 }
 
+/* INVOICE TITLE */
 .box h3 {
     text-align: center;
-    color: #ff4da6;
+    color: #ff2b2b;
+    margin-top: 0;
 }
 
+/* INVOICE ITEMS */
 .invoice-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
+/* REMOVE BUTTON */
 .remove-btn {
     background: transparent;
-    color: #ff4da6;
-    font-size: 16px;
-    border: 1px solid #ff4da6;
-    padding: 4px 10px;
+    color: #ff2b2b;
+    font-size: 15px;
+    border: 1px solid #ff2b2b;
+    padding: 5px 10px;
     border-radius: 8px;
     cursor: pointer;
+    width: auto;
+    box-shadow: none;
 }
 
 .remove-btn:hover {
-    background: #ff4da6;
-    color: #fff;
+    background: #ff2b2b;
+    color: white;
 }
 
+/* TOTAL */
 .total {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     text-align: center;
-    margin-top: 10px;
-    color: #ff4da6;
-}
-
-.actions {
     margin-top: 15px;
+    color: #ffffff;
 }
 
+/* RESET */
+.actions {
+    margin-top: 18px;
+}
+
+/* DESKTOP */
 @media (min-width: 600px) {
     .services {
         grid-template-columns: 1fr 1fr;
     }
 
     h1 {
-        font-size: 36px;
+        font-size: 40px;
     }
 }
 </style>
@@ -124,37 +141,16 @@ button:hover {
 
 <body>
 
-<h1>Baddies Mechanic Register</h1>
+<h1>Auto Exotics</h1>
 
-<!-- MAIN SERVICES -->
-<div class="services">
-    <button onclick="addItem('Full Upgrade', 500000)">Full Upgrade ($500K)</button>
-    <button onclick="addItem('Full Service', 350000)">Full Service ($350K)</button>
-    <button onclick="addItem('Engine Swap', 100000)">Engine Swap ($100K)</button>
-    <button onclick="addItem('Repair', 50000)">Repair ($50K)</button>
-    <button onclick="addItem('Carplay Install', 350000)">Carplay Install ($350K)</button>
-    <button onclick="addItem('Roadside Assistance', 150000)">Roadside Assistance ($150K)</button>
-</div>
-
-<!-- INDIVIDUAL SERVICES -->
-<div class="section-title">Individual Services</div>
+<div class="section-title">Services</div>
 
 <div class="services">
-    <button onclick="addItem('Engine Upgrade (+)', 10000)">Engine Upgrade (+) ($10K)</button>
-    <button onclick="addItem('Brakes (+)', 10000)">Brakes (+) ($10K)</button>
-    <button onclick="addItem('Transmission (+)', 10000)">Transmission (+) ($10K)</button>
-    <button onclick="addItem('Suspension (+)', 10000)">Suspension (+) ($10K)</button>
-    <button onclick="addItem('Armor (+)', 10000)">Armor (+) ($10K)</button>
-    <button onclick="addItem('Turbo', 20000)">Turbo ($20K)</button>
-    <button onclick="addItem('Stance', 15000)">Stance ($15K)</button>
-    <button onclick="addItem('Wheels', 20000)">Wheels ($20K)</button>
-    <button onclick="addItem('Tire Smoke', 15000)">Tire Smoke ($15K)</button>
-    <button onclick="addItem('Bulletproof Tires', 50000)">Bulletproof Tires ($50K)</button>
-    <button onclick="addItem('Window Tint', 10000)">Window Tint ($10K)</button>
-    <button onclick="addItem('Respray', 20000)">Respray ($20K)</button>
-    <button onclick="addItem('Headlights', 15000)">Headlights ($15K)</button>
-    <button onclick="addItem('Nitro Tank (+)', 100000)">Nitro Tank (+) ($100K)</button>
-    <button onclick="addItem('Cosmetics', 20000)">Cosmetics ($20K)</button>
+    <button onclick="addItem('Repairs', 50000)">Repairs ($50K)</button>
+    <button onclick="addItem('Respray/Customization', 150000)">Respray/Customization ($150K)</button>
+    <button onclick="addItem('Full Upgrades', 350000)">Full Upgrades ($350K)</button>
+    <button onclick="addItem('Engine Swap', 350000)">Engine Swap ($350K)</button>
+    <button onclick="addItem('Tune-Up/Service', 50000)">Tune-Up/Service ($50K)</button>
 </div>
 
 <!-- INVOICE -->
@@ -163,10 +159,12 @@ button:hover {
 
     <div id="invoice"></div>
 
-    <div class="total">Total: $<span id="total">0</span></div>
+    <div class="total">
+        Total: $<span id="total">0</span>
+    </div>
 
     <div class="actions">
-        <button onclick="resetOrder()">Reset</button>
+        <button onclick="resetOrder()">Reset Register</button>
     </div>
 </div>
 
